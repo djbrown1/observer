@@ -87,9 +87,9 @@ class controller():
     
 
 class observer():
-    
+    """Luenberger state observer"""
     def __init__(self, x_0, t_0):
-        """ Just the observer """
+        """ Initialize the coefficients and parameters for the observer """
         # set the model parameters for the observer
         self.A = matrix([[-0.01546814,0.00639784],[0.03924884,-0.03924884]])
         self.B = matrix([[5.71428571429e-3],[0]])
