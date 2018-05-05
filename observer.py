@@ -5,7 +5,8 @@ class controller():
         from numpy import matrix
         
         """ Initialize the PID aspect of the controller """
-        # Define the proportional, integral, and derivative coefficients
+        # Define the proportional, integral, 
+        # and derivative coefficients
         self.Kp = Kp
         self.Ki = Ki
         self.Kd = Kd
@@ -25,9 +26,11 @@ class controller():
         self.I = 0
         self.D = 0
         
-        """ Initialize the Luenberger observer aspect of the controller """
+        """ Initialize the Luenberger observer 
+        aspect of the controller """
         # set the model parameters for the observer
-        self.A = matrix([[-0.01546814,0.00639784],[0.03924884,-0.03924884]])
+        self.A = matrix([[-0.01546814,0.00639784],
+                         [0.03924884,-0.03924884]])
         self.B = matrix([[5.71428571429e-3],[0]])
         self.C = matrix([[0,1]])
         self.L = matrix([[1],[1]])
@@ -81,17 +84,17 @@ class controller():
         self.x = self.x + (d_est*(t - self.t_prev))
         
         PV = matmul(self.C,self.x)[0,0]
-        
-        # Rturn value for the process variable, after the observer is applied
         return PV
     
 
 class observer():
     """Luenberger state observer"""
     def __init__(self, x_0, t_0):
-        """ Initialize the coefficients and parameters for the observer """
+        """ Initialize the coefficients
+        and parameters for the observer """
         # set the model parameters for the observer
-        self.A = matrix([[-0.01546814,0.00639784],[0.03924884,-0.03924884]])
+        self.A = matrix([[-0.01546814,0.00639784],
+                         [0.03924884,-0.03924884]])
         self.B = matrix([[5.71428571429e-3],[0]])
         self.C = matrix([[0,1]])
         self.L = matrix([[1],[0.2]])
